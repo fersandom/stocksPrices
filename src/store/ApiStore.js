@@ -1,20 +1,27 @@
-import PrivateStore from "../private/PrivateStore";
+import PrivateStore from "./PrivateStore";
 import axios from "axios";
 import { reactive } from "vue";
 
 const state = reactive({
-    stockChartData: Object
+    stockChartData: Object,
+    searchQuery: "",
+    searchResults: Object,
+    searchReady: false
 
 });
 
 const methods = {
-    saludo(nombre) {
-        console.log("Hola " + nombre);
-    },
+
     async fetchApple() {
-        await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=AAPL&resolution=D&count=500&token=${PrivateStore.token}`)
+        await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=IBML&resolution=D&count=500&token=${PrivateStore.token}`)
             .then(response => { state.stockChartData = response.data });
-        console.log(state.stockChartData);
+    },
+
+    async searchSymbol() {
+        state.searchReady = false
+        await axios.get(`https://finnhub.io/api/v1/search?q=${state.searchQuery}&token=${PrivateStore.token}`)
+            .then(response => { state.searchResults = response.data })
+        state.searchReady = true
     }
 };
 
