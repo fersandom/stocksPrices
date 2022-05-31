@@ -28,7 +28,7 @@ const methods = {
     },
 
     async fetchChartData(symbol) {
-        await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&count=500&token=${PrivateStore.state.token}`)
+        await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&count=100&token=${PrivateStore.state.token}`)
             .then(response => { state.stockChartData = response.data });
     },
 

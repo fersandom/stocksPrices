@@ -6,7 +6,6 @@ import { Line } from 'vue-chartjs'
 import {
     Chart as ChartJS,
     Title,
-    Tooltip,
     Legend,
     LineElement,
     LinearScale,
@@ -15,7 +14,6 @@ import {
 } from 'chart.js';
 ChartJS.register(
     Title,
-    Tooltip,
     Legend,
     LineElement,
     LinearScale,
@@ -30,11 +28,15 @@ let chartData = {
     datasets: [{
         data: ApiStore.state.stockChartData.c,
         label: `${ApiStore.state.selectedStock} Price`,
-
+        borderColor: 'rgb(0, 0, 0)',
+        backgroundColor: 'rgb(0, 0, 0)',
+        borderWidth: 1,
+        pointRadius: 0,
+        fill: false
     }]
 };
 let chartOptions = {
-    responsive: true
+    responsive: true,
 };
 
 

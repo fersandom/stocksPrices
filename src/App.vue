@@ -24,7 +24,7 @@ inject[ApiStore];
   font-family: 'Karla', sans-serif;
 }
 .stock-chart{
-  width: 700px;
+  width: 400px;
   margin: auto;
   
 }
