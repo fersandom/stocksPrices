@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "vue": "^3.2.25"
+    "chart.js": "^3.8.0",
+    "vue": "^3.2.25",
+    "vue-chartjs": "^4.1.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",

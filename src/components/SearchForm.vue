@@ -1,11 +1,14 @@
 <script setup>
+import { inject } from 'vue';
 import ApiStore from '../store/ApiStore';
+inject[ApiStore]
+let searchQuery = "";
 </script>
 
 <template>
-<form @submit.prevent="ApiStore.methods.searchSymbol">
+<form @submit.prevent="ApiStore.methods.searchSymbol(searchQuery)">
     <label for="stock-search">Search stock</label>
-    <input v-model="ApiStore.state.searchQuery" id="stock-search" type="text">
+    <input v-model="searchQuery" id="stock-search" type="text">
     <button type="submit">Search</button>
   </form>
 </template>
