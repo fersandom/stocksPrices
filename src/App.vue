@@ -4,17 +4,19 @@ import SearchForm from './components/SearchForm.vue';
 import SearchResults from "./components/SearchResults.vue"
 import StockPriceChart from './components/StockPriceChart.vue';
 import { inject } from 'vue';
-inject[ApiStore];
+import UIStore from './store/UIStore';
+inject[ApiStore, UIStore];
+console.log(typeof(ApiStore.state.validResults))
 </script>
 
 <template>
   <!-- <StockPriceChart /> -->
   <SearchForm />
-  <div v-if="ApiStore.state.showSearchResults === true">
-    <SearchResults :results="ApiStore.state.searchResults.result" />
+  <div v-if="UIStore.state.showSearchResults === true">
+    <SearchResults :results="ApiStore.state.validResults" />
   </div>
 
-  <div v-if="ApiStore.state.showChart === true">
+  <div v-if="UIStore.state.showChart === true">
   <StockPriceChart class="stock-chart" />
   </div>
 </template>

@@ -1,9 +1,10 @@
 <script setup>
 import { inject } from 'vue';
 import ApiStore from '../store/ApiStore';
-inject[ApiStore];
+import ChartStore from '../store/ChartStore';
+inject[ApiStore, ChartStore];
 const props = defineProps({
-    results: Object
+    results: []
 })
 </script>
 
@@ -12,7 +13,7 @@ const props = defineProps({
         <div class="stock-list" v-for="(result, index) in props.results" :key="index">
             <div class="stock-container">
                 <p>{{ result.description }}</p>
-                <p class="stock-symbol" @click="ApiStore.methods.setSelectedStockAndFetchChartData(result.displaySymbol)">{{ result.displaySymbol }}</p>
+                <p class="stock-symbol" @click="ChartStore.methods.fetchChartData(result.displaySymbol)">{{ result.displaySymbol }}</p>
             </div>
             <div class="icons-container">
                 <p>L</p>

@@ -1,15 +1,16 @@
 import PrivateStore from "./PrivateStore";
 import axios from "axios";
 import { inject, reactive, readonly } from "vue";
+import UIStore from "./UIStore";
 
-inject[PrivateStore]
+inject[PrivateStore, UIStore]
 
 const state = reactive({
     selectedStock: "",
-    stockChartData: Object,
+    validResults: [],
+    // stockChartData: Object,
     searchResults: Object,
-    showSearchResults: false,
-    showChart: false
+
 });
 
 const methods = {
@@ -20,11 +21,32 @@ const methods = {
     },
 
     async searchSymbol(query) {
-        this.resetBoard();
-        state.searchReady = false
+        state.validResults = [];
+        UIStore.methods.resetBoard();
         await axios.get(`https://finnhub.io/api/v1/search?q=${query}&token=${PrivateStore.state.token}`)
-            .then(response => { state.searchResults = response.data })
-        state.showSearchResults = true
+            .then(response => { state.searchResults = response.data });
+
+        this.addToValidResults(state.searchResults);
+
+        UIStore.methods.showSearchResults();
+    },
+
+    checkDot(stockSymbol) {
+        if (stockSymbol.includes(".")) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+
+    addToValidResults(){
+        state.searchResults.result.forEach(e => {
+           if(this.checkDot(e.displaySymbol)) {
+               state.validResults.push(e);
+           }
+        })
+        console.log(state.validResults);
     },
 
     async fetchChartData(symbol) {
@@ -33,31 +55,21 @@ const methods = {
     },
 
     //TODO Refactor this mess
-    async setSelectedStockAndFetchChartData(stock) {
-        if (stock.includes(".")) {
-            state.selectedStock = stock.split("."[0]);
-            await this.fetchChartData(state.selectedStock)
-            console.log(state.selectedStock);
-            console.log(state.stockChartData);
-        } else {
-            state.selectedStock = stock;
-            await this.fetchChartData(state.selectedStock)
-            console.log(state.selectedStock);
-            console.log(state.stockChartData);
-        }
-        this.resetBoard();
-        this.showChart();
-    },
-
-    resetBoard() {
-        state.showSearchResults = false;
-        state.showChart = false;
-    },
-
-    showChart() {
-        this.resetBoard();
-        state.showChart = true;
-    }
+    // async setSelectedStockAndFetchChartData(stock) {
+    //     if (stock.includes(".")) {
+    //         state.selectedStock = stock.split("."[0]);
+    //         await this.fetchChartData(state.selectedStock)
+    //         console.log(state.selectedStock);
+    //         console.log(state.stockChartData);
+    //     } else {
+    //         state.selectedStock = stock;
+    //         await this.fetchChartData(state.selectedStock)
+    //         console.log(state.selectedStock);
+    //         console.log(state.stockChartData);
+    //     }
+    //     UIStore.methods.resetBoard();
+    //     UIStore.methods.showChart();
+    // },
 
 
 };

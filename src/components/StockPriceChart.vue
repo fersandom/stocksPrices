@@ -6,14 +6,17 @@ import { Line } from 'vue-chartjs'
 import {
     Chart as ChartJS,
     Title,
+    //Tooltip,
     Legend,
     LineElement,
     LinearScale,
     PointElement,
     CategoryScale,
 } from 'chart.js';
+import ChartStore from '../store/ChartStore';
 ChartJS.register(
     Title,
+    //Tooltip,
     Legend,
     LineElement,
     LinearScale,
@@ -21,12 +24,12 @@ ChartJS.register(
     CategoryScale
 );
 
-inject[ApiStore];
+inject[ChartStore, ApiStore];
 
 let chartData = {
-    labels: ApiStore.state.stockChartData.t,
+    labels: ChartStore.state.stockChartData.t,
     datasets: [{
-        data: ApiStore.state.stockChartData.c,
+        data: ChartStore.state.stockChartData.c,
         label: `${ApiStore.state.selectedStock} Price`,
         borderColor: 'rgb(0, 0, 0)',
         backgroundColor: 'rgb(0, 0, 0)',
