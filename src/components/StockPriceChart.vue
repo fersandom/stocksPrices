@@ -50,5 +50,5 @@ let chartOptions = {
     <Line :chart-options="chartOptions" :chart-data="chartData" />
 </template>
 
-<style>
+<style scoped>
 </style>

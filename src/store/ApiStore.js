@@ -8,7 +8,7 @@ inject[PrivateStore, UIStore]
 const state = reactive({
     selectedStock: "",
     validResults: [],
-    // stockChartData: Object,
+    //stockChartData: Object,
     searchResults: Object,
 
 });
@@ -49,10 +49,14 @@ const methods = {
         console.log(state.validResults);
     },
 
-    async fetchChartData(symbol) {
-        await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&count=100&token=${PrivateStore.state.token}`)
-            .then(response => { state.stockChartData = response.data });
-    },
+    setSelectedStock(symbol){
+        state.selectedStock = symbol;
+    }
+
+    // async fetchChartData(symbol) {
+    //     await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&count=100&token=${PrivateStore.state.token}`)
+    //         .then(response => { state.stockChartData = response.data });
+    // },
 
     //TODO Refactor this mess
     // async setSelectedStockAndFetchChartData(stock) {

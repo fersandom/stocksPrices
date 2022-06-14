@@ -24,7 +24,7 @@ const props = defineProps({
     </div>
 </template>
 
-<style>
+<style scoped>
 .container {
     margin: auto;
     width: 90%;

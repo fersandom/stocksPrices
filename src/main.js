@@ -4,5 +4,7 @@ import ApiStore from './store/ApiStore'
 import ChartStore from './store/ChartStore'
 import PrivateStore from './store/PrivateStore'
 import UIStore from './store/UIStore'
+import TradingStore from './store/TradingStore'
 
-createApp(App).provide(ApiStore, ChartStore, UIStore, PrivateStore).mount('#app')
+
+createApp(App).provide(ApiStore, ChartStore, UIStore, TradingStore, PrivateStore).mount('#app')

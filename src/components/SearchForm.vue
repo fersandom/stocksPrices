@@ -13,7 +13,7 @@ let searchQuery = "";
   </form>
 </template>
 
-<style>
+<style scoped>
 form{
     display: flex;
     gap: 15px;

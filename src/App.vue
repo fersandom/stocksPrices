@@ -5,19 +5,18 @@ import SearchResults from "./components/SearchResults.vue"
 import StockPriceChart from './components/StockPriceChart.vue';
 import { inject } from 'vue';
 import UIStore from './store/UIStore';
+import TradingDasboard from './components/TradingDasboard.vue';
 inject[ApiStore, UIStore];
-console.log(typeof(ApiStore.state.validResults))
 </script>
 
 <template>
-  <!-- <StockPriceChart /> -->
   <SearchForm />
   <div v-if="UIStore.state.showSearchResults === true">
     <SearchResults :results="ApiStore.state.validResults" />
   </div>
 
   <div v-if="UIStore.state.showChart === true">
-  <StockPriceChart class="stock-chart" />
+  <TradingDasboard />
   </div>
 </template>
 
@@ -25,9 +24,5 @@ console.log(typeof(ApiStore.state.validResults))
 * {
   font-family: 'Karla', sans-serif;
 }
-.stock-chart{
-  width: 400px;
-  margin: auto;
-  
-}
+
 </style>
