@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "chart.js": "^3.8.0",
+    "uniqid": "^5.4.0",
     "vue": "^3.2.25",
     "vue-chartjs": "^4.1.1"
   },

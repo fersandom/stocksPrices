@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-    price: Number
+    price: Function
 })
 </script>
 

@@ -4,7 +4,7 @@ import ApiStore from '../store/ApiStore';
 import ChartStore from '../store/ChartStore';
 inject[ApiStore, ChartStore];
 const props = defineProps({
-    results: []
+    results: Array
 })
 </script>
 
