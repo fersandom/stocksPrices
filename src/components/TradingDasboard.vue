@@ -19,7 +19,7 @@ TradingStore.methods.getCurrentPrice(ApiStore.state.selectedStock);
       <PricePanel :price="TradingStore.state.currentPrice" />
       <form @submit.prevent="">
         <label for="amount">Amount of stocks</label>
-        <input id="amount" type="number" v-model="amount"/>
+        <input id="amount" type="number" min="1" step="1" v-model="amount"/>
         <div class="buttons">
           <TradingButton class="button" :text="'Buy'" :amount="amount" :color="'#45CB85'" />
           <TradingButton class="button" :text="'Sell'" :amount="amount" :color="'#F71735'" />

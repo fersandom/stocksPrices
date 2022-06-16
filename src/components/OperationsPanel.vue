@@ -26,10 +26,14 @@ inject[TradingStore]
     <td>{{trade.price}}</td>
     <td>{{trade.currentPrice}}</td>
     <td>{{Math.round(((trade.currentPrice - trade.price) * trade.amount)*100)/100}} $</td>
-    <td @click="TradingStore.methods.closeTrade(trade.orderId)">X</td>
+    <td @click="TradingStore.methods.closeTrade(trade.orderId)" class="close-button">X</td>
 </tr>
 
 </table>
 </template>
 
-<style scoped></style>
+<style scoped>
+.close-button{
+    cursor: pointer;
+}
+</style>

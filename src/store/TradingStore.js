@@ -61,10 +61,8 @@ const methods = {
 
     closeTrade(id) {
         const closedTradeIndex = state.currentTrades.findIndex(e => e.orderId === id);
-        console.log(closedTradeIndex);
         state.closedTrades.push(state.currentTrades[closedTradeIndex]);
         state.currentTrades.splice(closedTradeIndex, 1);
-        console.log(state.closedTrades);
         this.updateLocalStorage();
     },
 

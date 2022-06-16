@@ -20,7 +20,7 @@ TradingStore.methods.getTradesCurrentPrice()
 
 </script>
 
-<template>
+<template class="app">
   <SearchForm />
   <div v-if="UIStore.state.showSearchResults === true">
     <SearchResults :results="ApiStore.state.validResults" />
@@ -30,11 +30,30 @@ TradingStore.methods.getTradesCurrentPrice()
     <TradingDasboard />
   </div>
 
-  <OperationsPanel />
+  <div class="panel-holder">
+    <OperationsPanel class="operations-panel" />
+  </div>
 </template>
 
 <style>
 * {
   font-family: 'Karla', sans-serif;
+}
+
+.app {
+  height: 100vh;
+}
+
+.panel-holder {
+  margin: auto;
+  width: 95%;
+  height: 15vh;
+  position: absolute;
+  bottom: 5px;
+  overflow: scroll;
+}
+.operations-panel{
+  width: 100%;
+  text-align: center;
 }
 </style>
