@@ -5,14 +5,15 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="container"><h3>{{props.price}}</h3></div>
+    <div class="container"><h3>{{props.price}} $</h3></div>
 </template>
 
 <style scoped>
 .container{
     border: 1px solid black;
-    padding: 40px;
-    font-size: 24px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
 }
 
 </style>
