@@ -8,6 +8,7 @@ import TradingDasboard from './components/TradingDasboard.vue';
 import OperationsPanel from './components/OperationsPanel.vue';
 import TradingStore from './store/TradingStore';
 import Title from './components/Title.vue';
+import WatchList from './components/WatchList.vue';
 inject[ApiStore, UIStore, TradingStore];
 if (localStorage.trades) {
   TradingStore.methods.loadTrades();
@@ -23,20 +24,27 @@ TradingStore.methods.getTradesCurrentPrice()
 
 <template class="app">
   <nav>
-    <Title class="title" :text="'Paper trading'" />
+    <Title class="title" text="Paper trading" />
     <SearchForm class="search-form" />
   </nav>
+
   <section class="main-display" v-if="UIStore.state.showSearchResults === true">
     <SearchResults :results="ApiStore.state.validResults" />
   </section>
 
-  <section class="main-display" v-if="UIStore.state.showChart === true">
+  <section class="main-display " v-if="UIStore.state.showChart === true">
     <TradingDasboard />
   </section>
+
+  <aside class="watchlist-holder">
+    <WatchList />
+  </aside>
 
   <section class="panel-holder">
     <OperationsPanel class="operations-panel" />
   </section>
+
+
 </template>
 
 <style>
@@ -48,24 +56,37 @@ TradingStore.methods.getTradesCurrentPrice()
   height: 100vh;
 }
 
-nav{
+nav {
   height: 10vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid black;
 }
-.title{
+
+.title {
   width: 50%;
   text-align: center;
 }
 
-.search-form{
+.search-form {
   width: 25%;
 }
 
-.main-display{
+.main-display {
   height: 75vh;
+  overflow: auto;
+}
+
+.watchlist-holder {
+  position: absolute;
+  margin-top: 15px;
+  right: 5px;
+  top: 12vh;
+  height: 65%;
+  width: 10%;
+  border-left: 2px solid black;
+  overflow: auto;
 }
 
 .panel-holder {

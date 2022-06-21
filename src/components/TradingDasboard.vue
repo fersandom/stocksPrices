@@ -48,10 +48,13 @@ TradingStore.methods.getCurrentPrice(ApiStore.state.selectedStock);
 
 .dashboard-info form{
   margin: 15px;
+  font-size: 18px;
 }
 
 .buttons {
-  display: block;
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
   margin: 15px;
 }
 

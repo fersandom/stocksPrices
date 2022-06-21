@@ -12,11 +12,11 @@ const state = reactive({
 
 const methods = {
     async fetchChartData(symbol) {
+        UIStore.methods.resetBoard();
         await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&count=100&token=${PrivateStore.state.token}`)
             .then(response => { state.stockChartData = response.data });
         ApiStore.methods.setSelectedStock(symbol);
         console.log(ApiStore.state.selectedStock);
-        UIStore.methods.resetBoard();
         UIStore.methods.showChart();
     },
 

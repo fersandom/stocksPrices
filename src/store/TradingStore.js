@@ -9,7 +9,8 @@ inject[PrivateStore, ApiStore]
 const state = reactive({
     currentPrice: Number,
     currentTrades: [],
-    closedTrades: []
+    closedTrades: [],
+    watchListItems: [],
 });
 
 const methods = {
@@ -72,7 +73,28 @@ const methods = {
 
     loadClosedTrades() {
         state.closedTrades = JSON.parse(localStorage.closedTrades);
-    }
+    },
+
+    removeFromShorList(index) {
+        state.watchListItems.splice(index, 1);
+        console.log(state.watchListItems);
+        localStorage.setItem("shortList", JSON.stringify(state.watchListItems))
+    },
+
+    addToWatchList(item) {
+        if (!state.watchListItems.some(e => e.name === item)) {
+            let newItem = {};
+            newItem.id = uniqid()
+            newItem.name = item;
+            state.watchListItems.push(newItem);
+            console.log(state.watchListItems);
+            localStorage.setItem("shortList", JSON.stringify(state.watchListItems))
+        } else {
+            console.log("Ya está en la lista");
+        }
+    },
+
+
 };
 
 export default { state: readonly(state), methods };
